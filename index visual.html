@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aremo Temmy Group - Ultra Visual Profile 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .gradient-bg {
+            background: radial-gradient(circle at top right, #0d9488, #134e4a, #0f172a);
+            position: relative;
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(20, 184, 166, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.5),
+                        0 0 40px rgba(20, 184, 166, 0.3),
+                        0 0 60px rgba(20, 184, 166, 0.2);
+            animation: neon-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(20, 184, 166, 0.5),
+                            0 0 40px rgba(20, 184, 166, 0.3),
+                            0 0 60px rgba(20, 184, 166, 0.2);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(20, 184, 166, 0.8),
+                            0 0 60px rgba(20, 184, 166, 0.5),
+                            0 0 90px rgba(20, 184, 166, 0.3);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .animate-spin-slow {
+            animation: spin 30s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(20, 184, 166, 0.5);
+        }
+
+        /* Progress Circle */
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            transition: stroke-dashoffset 1s ease;
+        }
+
+        /* Hexagon */
+        .hexagon {
+            width: 80px;
+            height: 46px;
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            position: relative;
+            margin: 23px auto;
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 23px solid #14b8a6;
+        }
+
+        .hexagon:after {
+            top: 100%;
+            border-top: 23px solid #0d9488;
+        }
+
+        /* Timeline */
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: #14b8a6;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
+        }
+
+        .timeline-line {
+            width: 2px;
+            background: linear-gradient(to bottom, #14b8a6, rgba(20, 184, 166, 0.2));
+        }
+
+        /* 3D Card */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        /* Network lines */
+        .network-line {
+            stroke: #14b8a6;
+            stroke-width: 2;
+            stroke-dasharray: 5, 5;
+            opacity: 0.3;
+            animation: dash 20s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+        /* Particle effect */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #14b8a6, transparent);
+            opacity: 0.6;
+            animation: particle-float 4s infinite;
+        }
+
+        @keyframes particle-float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+            }
+        }
+
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { background: white; color: black; }
+            .glass, .glass-strong { background: white; color: black; border: 1px solid #ddd; }
+            .gradient-bg { background: white !important; }
+            .a4-page {
+                width: 210mm;
+                height: 297mm;
+                padding: 15mm;
+                margin: 0;
+                page-break-after: always;
+            }
+        }
+
+        /* Radar Chart Container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        /* Data Flow Animation */
+        .data-flow {
+            animation: flow 2s ease-in-out infinite;
+        }
+
+        @keyframes flow {
+            0%, 100% { opacity: 0.3; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(10px); }
+        }
+
+        /* Skill Bar */
+        .skill-bar {
+            height: 8px;
+            background: rgba(20, 184, 166, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #14b8a6, #0d9488);
+            border-radius: 10px;
+            animation: fill 2s ease-out;
+        }
+
+        @keyframes fill {
+            from { width: 0%; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <!-- Controls -->
+    <div class="fixed top-5 right-5 z-50 no-print flex gap-2">
+        <button onclick="window.print()" class="bg-teal-600 hover:bg-teal-500 text-white px-6 py-2 rounded-full font-bold shadow-lg transition neon-glow">
+            <i class="fas fa-print mr-2"></i> Print A4 PDF
+        </button>
+    </div>
+
+    <!-- PAGE 1: ULTRA VISUAL COVER -->
+    <div class="a4-container gradient-bg rounded-3xl overflow-hidden relative shadow-2xl p-12 border-2 border-teal-500/40">
+        
+        <!-- Animated Grid Background -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg width="100%" height="100%">
+                <defs>
+                    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                        <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(20,184,166,0.4)" stroke-width="1"/>
+                    </pattern>
+                    <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:0.5" />
+                        <stop offset="100%" style="stop-color:#0d9488;stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <!-- Floating Particles -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="particle" style="width: 4px; height: 4px; top: 10%; left: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="width: 6px; height: 6px; top: 30%; left: 60%; animation-delay: 1s;"></div>
+            <div class="particle" style="width: 3px; height: 3px; top: 50%; left: 15%; animation-delay: 2s;"></div>
+            <div class="particle" style="width: 5px; height: 5px; top: 70%; left: 80%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="width: 4px; height: 4px; top: 20%; left: 85%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="width: 6px; height: 6px; top: 60%; left: 40%; animation-delay: 2.5s;"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center z-10 relative mb-6">
+            <div class="inline-block mb-4">
+                <div class="text-teal-400 font-bold tracking-[0.5em] text-xs mb-2 font-orbitron">AREMO TEMMY GROUP'S</div>
+                <div class="h-1 w-full bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-black mb-6 uppercase tracking-tighter font-orbitron bg-gradient-to-r from-teal-400 via-teal-300 to-teal-400 bg-clip-text text-transparent" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Aremo Temmy Group<br>of Company Nig Ltd
+            </h1>
+            <div class="glass-strong px-8 py-3 rounded-full inline-block border-teal-500/50 neon-glow">
+                <span class="text-teal-300 font-bold italic text-lg">"Connecting Global Trade"</span>
+            </div>
+        </div>
+
+        <!-- Central Visual Element with Orbiting Stats -->
+        <div class="relative z-10 mb-8 flex justify-center">
+            <div class="relative w-96 h-96">
+                <!-- Central Globe -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-teal-900/40 to-teal-700/20 flex items-center justify-center animate-float border-4 border-teal-500/30">
+                    <!-- Rotating Rings -->
+                    <div class="absolute inset-0 rounded-full border-2 border-dashed border-teal-500/40 animate-spin-slow"></div>
+                    <div class="absolute inset-8 rounded-full border-2 border-dotted border-teal-400/30" style="animation: spin 20s linear infinite reverse;"></div>
+                    <div class="absolute inset-16 rounded-full border border-teal-300/20" style="animation: spin 15s linear infinite;"></div>
+                    
+                    <!-- Globe Icon -->
+                    <div class="relative z-10">
+                        <i class="fas fa-globe-africa text-8xl text-teal-400 drop-shadow-[0_0_30px_rgba(20,184,166,0.8)]"></i>
+                    </div>
+                </div>
+
+                <!-- Orbiting Stat 1 - Top -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 glass-strong rounded-2xl px-6 py-3 neon-glow animate-float" style="animation-delay: 0s;">
+                    <div class="text-center">
+                        <div class="text-3xl font-black text-teal-400 font-orbitron">3</div>
+                        <div class="text-xs text-teal-200 font-semibold uppercase tracking-wider">Continents</div>
+                    </div>
+                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-8 bg-gradient-to-b from-teal-500 to-transparent"></div>
+                </div>
+
+                <!-- Orbiting Stat 2 - Right -->
+                <div class="absolute top-1/2 right-0 -translate-y-1/2 glass-strong rounded-2xl px-6 py-3 neon-glow animate-float" style="animation-delay: 0.5s;">
+                    <div class="text-center">
+                        <div class="text-3xl font-black text-teal-400 font-orbitron">4</div>
+                        <div class="text-xs text-teal-200 font-semibold uppercase tracking-wider">Subsidiaries</div>
+                    </div>
+                    <div class="absolute -left-2 top-1/2 -translate-y-1/2 h-1 w-8 bg-gradient-to-l from-teal-500 to-transparent"></div>
+                </div>
+
+                <!-- Orbiting Stat 3 - Bottom -->
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 glass-strong rounded-2xl px-6 py-3 neon-glow animate-float" style="animation-delay: 1s;">
+                    <div class="text-center">
+                        <div class="text-3xl font-black text-teal-400 font-orbitron">15+</div>
+                        <div class="text-xs text-teal-200 font-semibold uppercase tracking-wider">Years</div>
+                    </div>
+                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-8 bg-gradient-to-t from-teal-500 to-transparent"></div>
+                </div>
+
+                <!-- Orbiting Stat 4 - Left -->
+                <div class="absolute top-1/2 left-0 -translate-y-1/2 glass-strong rounded-2xl px-6 py-3 neon-glow animate-float" style="animation-delay: 1.5s;">
+                    <div class="text-center">
+                        <div class="text-3xl font-black text-teal-400 font-orbitron">100%</div>
+                        <div class="text-xs text-teal-200 font-semibold uppercase tracking-wider">Reliable</div>
+                    </div>
+                    <div class="absolute -right-2 top-1/2 -translate-y-1/2 h-1 w-8 bg-gradient-to-r from-teal-500 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Info -->
+        <div class="w-full z-10 relative flex flex-col items-center gap-6">
+            <div class="glass-strong p-8 w-full max-w-2xl rounded-3xl text-center border-2 border-teal-500/40">
+                <h2 class="text-3xl font-black text-white mb-2 font-orbitron uppercase tracking-wider">Company Profile</h2>
+                <div class="h-1 w-32 bg-gradient-to-r from-transparent via-teal-500 to-transparent mx-auto mb-3"></div>
+                <div class="text-teal-400 text-5xl font-black font-orbitron">2026</div>
+            </div>
+            
+            <!-- Global Presence with Icons -->
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center mb-3 mx-auto border-2 border-teal-400 neon-glow rotate-45 group-hover:rotate-0 transition-transform duration-500">
+                        <i class="fas fa-map-marker-alt text-3xl text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500"></i>
+                    </div>
+                    <div class="text-sm font-black text-teal-100 font-orbitron">NIGERIA</div>
+                    <div class="text-xs text-teal-400">Headquarters</div>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center mb-3 mx-auto border-2 border-teal-400 neon-glow rotate-45 group-hover:rotate-0 transition-transform duration-500">
+                        <i class="fas fa-flag-usa text-3xl text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500"></i>
+                    </div>
+                    <div class="text-sm font-black text-teal-100 font-orbitron">USA</div>
+                    <div class="text-xs text-teal-400">Regional Office</div>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center mb-3 mx-auto border-2 border-teal-400 neon-glow rotate-45 group-hover:rotate-0 transition-transform duration-500">
+                        <i class="fas fa-flag text-3xl text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500"></i>
+                    </div>
+                    <div class="text-sm font-black text-teal-100 font-orbitron">UK</div>
+                    <div class="text-xs text-teal-400">European Hub</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: LEADERSHIP WITH CHARTS -->
+    <div class="a4-container bg-slate-900 rounded-3xl overflow-hidden relative shadow-2xl p-12 border-2 border-teal-500/30">
+        
+        <!-- Background Pattern -->
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-5">
+            <svg width="100%" height="100%">
+                <circle cx="80%" cy="20%" r="200" fill="url(#line-gradient)" />
+                <circle cx="90%" cy="80%" r="150" fill="url(#line-gradient)" />
+            </svg>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 h-full relative z-10">
+            
+            <!-- Left Column: CEO Section -->
+            <div class="flex flex-col justify-center items-center text-center">
+                <!-- CEO Image with Advanced Glow -->
+                <div class="relative mb-8">
+                    <div class="w-72 h-72 rounded-full overflow-hidden bg-gradient-to-br from-teal-900 via-teal-700 to-slate-800 flex items-center justify-center relative neon-glow border-4 border-teal-500">
+                        <i class="fas fa-user-tie text-9xl text-slate-600"></i>
+                        <div class="absolute bottom-6 bg-gradient-to-r from-teal-600 to-teal-500 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider">CEO & Founder</div>
+                    </div>
+                    <!-- Decorative Corners -->
+                    <div class="absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 border-teal-400"></div>
+                    <div class="absolute -top-4 -right-4 w-12 h-12 border-t-4 border-r-4 border-teal-400"></div>
+                    <div class="absolute -bottom-4 -left-4 w-12 h-12 border-b-4 border-l-4 border-teal-400"></div>
+                    <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b-4 border-r-4 border-teal-400"></div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-white mb-2">Amiowwse Adduriquida Terenetor</h3>
+                <p class="text-teal-400 font-semibold mb-8 text-sm uppercase tracking-wider">Executive Leadership</p>
+                
+                <!-- Leadership Metrics with Progress Circles -->
+                <div class="grid grid-cols-3 gap-6 mb-8 w-full">
+                    <div class="stat-card glass-strong rounded-xl p-4 text-center">
+                        <svg class="progress-circle w-20 h-20 mx-auto mb-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(20,184,166,0.1)" stroke-width="8"/>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#14b8a6" stroke-width="8" 
+                                    stroke-dasharray="282.7" stroke-dashoffset="56.5" stroke-linecap="round"/>
+                            <text x="50" y="55" text-anchor="middle" fill="#14b8a6" font-size="20" font-weight="bold" class="font-orbitron">15+</text>
+                        </svg>
+                        <div class="text-xs text-slate-400 uppercase font-semibold">Years</div>
+                    </div>
+                    <div class="stat-card glass-strong rounded-xl p-4 text-center">
+                        <svg class="progress-circle w-20 h-20 mx-auto mb-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(20,184,166,0.1)" stroke-width="8"/>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#14b8a6" stroke-width="8" 
+                                    stroke-dasharray="282.7" stroke-dashoffset="28.3" stroke-linecap="round"/>
+                            <text x="50" y="52" text-anchor="middle" fill="#14b8a6" font-size="16" font-weight="bold" class="font-orbitron">500+</text>
+                        </svg>
+                        <div class="text-xs text-slate-400 uppercase font-semibold">Projects</div>
+                    </div>
+                    <div class="stat-card glass-strong rounded-xl p-4 text-center">
+                        <svg class="progress-circle w-20 h-20 mx-auto mb-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(20,184,166,0.1)" stroke-width="8"/>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#14b8a6" stroke-width="8" 
+                                    stroke-dasharray="282.7" stroke-dashoffset="5.7" stroke-linecap="round"/>
+                            <text x="50" y="55" text-anchor="middle" fill="#14b8a6" font-size="18" font-weight="bold" class="font-orbitron">98%</text>
+                        </svg>
+                        <div class="text-xs text-slate-400 uppercase font-semibold">Success</div>
+                    </div>
+                </div>
+                
+                <!-- Quote with Enhanced Styling -->
+                <div class="glass-strong p-6 rounded-2xl italic text-slate-300 relative border border-teal-500/30">
+                    <div class="absolute -top-6 left-6 w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-left text-white text-xl"></i>
+                    </div>
+                    <p class="pt-4 leading-relaxed text-sm">
+                        "At Aremo Temmy Group, we leverage our tri-continental presence to provide global reach, local precision, and trusted delivery. We don't just move cargo; we move economies."
+                    </p>
+                    <div class="absolute -bottom-6 right-6 w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-right text-white text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Company Info with Visual Elements -->
+            <div class="flex flex-col justify-center space-y-8">
+                
+                <!-- Mission -->
+                <div class="card-3d">
+                    <div class="glass-strong p-6 rounded-2xl border border-teal-500/30">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center shrink-0 neon-glow">
+                                <i class="fas fa-bullseye text-3xl text-white"></i>
+                            </div>
+                            <h2 class="text-2xl font-black uppercase font-orbitron">Our Mission</h2>
+                        </div>
+                        <div class="pl-20">
+                            <p class="text-slate-300 leading-relaxed mb-4">
+                                To connect businesses across continents through reliable trade solutions, innovative logistics systems, and an unwavering commitment to professional facilitation.
+                            </p>
+                            <!-- Mission Pillars -->
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+                                    <span class="text-xs text-teal-300 font-semibold">Reliability</span>
+                                    <div class="skill-bar flex-1">
+                                        <div class="skill-fill" style="width: 95%;"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+                                    <span class="text-xs text-teal-300 font-semibold">Innovation</span>
+                                    <div class="skill-bar flex-1">
+                                        <div class="skill-fill" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+                                    <span class="text-xs text-teal-300 font-semibold">Excellence</span>
+                                    <div class="skill-bar flex-1">
+                                        <div class="skill-fill" style="width: 98%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Who We Are -->
+                <div class="card-3d">
+                    <div class="glass-strong p-6 rounded-2xl border border-teal-500/30">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center shrink-0 neon-glow">
+                                <i class="fas fa-building text-3xl text-white"></i>
+                            </div>
+                            <h2 class="text-2xl font-black uppercase font-orbitron">Who We Are</h2>
+                        </div>
+                        <div class="pl-20">
+                            <p class="text-slate-300 leading-relaxed">
+                                Aremo Temmy Group (ATG) is a premier international conglomerate bridging the gap between global markets. We provide reliable trade solutions and innovative logistics systems designed for professional excellence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Manager -->
+                <div class="card-3d">
+                    <div class="glass-strong p-6 rounded-2xl border-2 border-teal-500/40 neon-glow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fas fa-user-cog text-3xl text-white"></i>
+                            </div>
+                            <h2 class="text-2xl font-black uppercase font-orbitron">Manager</h2>
+                        </div>
+                        <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-xl">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal-600 to-teal-800 rounded-full flex items-center justify-center shrink-0 border-2 border-teal-400">
+                                <i class="fas fa-user-check text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-xl font-bold text-white uppercase font-orbitron">Afolabi Nurudeen</div>
+                                <div class="text-xs text-teal-400 uppercase tracking-wider">Operations Manager</div>
+                                <div class="text-xs text-slate-400 mt-1">Operational Excellence & Global Logistics</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: SUBSIDIARIES WITH NETWORK DIAGRAM -->
+    <div class="a4-container bg-slate-900 rounded-3xl overflow-hidden relative shadow-2xl p-12 border-2 border-teal-500/30">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-5xl font-black uppercase tracking-tight font-orbitron mb-3">
+                Our Subsidiary <span class="text-teal-500">Ecosystem</span>
+            </h2>
+            <div class="h-1 w-64 bg-gradient-to-r from-transparent via-teal-500 to-transparent mx-auto mb-4"></div>
+            <p class="text-slate-400 max-w-3xl mx-auto text-sm">
+                Four specialized divisions working in perfect harmony to deliver comprehensive global trade solutions
+            </p>
+        </div>
+        
+        <!-- Network Visualization -->
+        <div class="relative mb-12">
+            <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
+                <!-- Connection Lines -->
+                <line class="network-line" x1="25%" y1="30%" x2="75%" y2="30%" />
+                <line class="network-line" x1="25%" y1="70%" x2="75%" y2="70%" />
+                <line class="network-line" x1="50%" y1="30%" x2="50%" y2="70%" />
+                <line class="network-line" x1="25%" y1="30%" x2="75%" y2="70%" />
+                <line class="network-line" x1="75%" y1="30%" x2="25%" y2="70%" />
+                
+                <!-- Central Hub Circle -->
+                <circle cx="50%" cy="50%" r="40" fill="rgba(20,184,166,0.1)" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,5"/>
+                <circle cx="50%" cy="50%" r="30" fill="rgba(20,184,166,0.05)" stroke="#14b8a6" stroke-width="1"/>
+            </svg>
+
+            <div class="grid grid-cols-2 gap-8 relative" style="z-index: 1;">
+                <!-- Subsidiary 1 -->
+                <div class="stat-card glass-strong p-6 rounded-2xl border border-teal-500/30 card-3d">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="hexagon flex items-center justify-center">
+                            <i class="fas fa-handshake text-3xl text-white absolute"></i>
+                        </div>
+                        <div class="flex-1 pt-8">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-black font-orbitron">01</div>
+                                <h4 class="text-lg font-bold text-white uppercase leading-tight">Aremo Temmy Global Synergy Ltd</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4 pl-4 border-l-2 border-teal-500/30">
+                        Corporate partnerships and strategic global trade facilitation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-handshake mr-1"></i>Partnerships
+                        </span>
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-chess mr-1"></i>Strategy
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Subsidiary 2 -->
+                <div class="stat-card glass-strong p-6 rounded-2xl border border-teal-500/30 card-3d">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="hexagon flex items-center justify-center">
+                            <i class="fas fa-globe-americas text-3xl text-white absolute"></i>
+                        </div>
+                        <div class="flex-1 pt-8">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-black font-orbitron">02</div>
+                                <h4 class="text-lg font-bold text-white uppercase leading-tight">A.A.T Brian & Brother's Worldwide Ltd</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4 pl-4 border-l-2 border-teal-500/30">
+                        Global procurement, sourcing, and international commodity trading.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-shopping-cart mr-1"></i>Procurement
+                        </span>
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-exchange-alt mr-1"></i>Trading
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Subsidiary 3 -->
+                <div class="stat-card glass-strong p-6 rounded-2xl border border-teal-500/30 card-3d">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="hexagon flex items-center justify-center">
+                            <i class="fas fa-truck-loading text-3xl text-white absolute"></i>
+                        </div>
+                        <div class="flex-1 pt-8">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-black font-orbitron">03</div>
+                                <h4 class="text-lg font-bold text-white uppercase leading-tight">Aremo Temmy Logistics Concept</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4 pl-4 border-l-2 border-teal-500/30">
+                        Advanced supply chain management and domestic logistics innovation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-link mr-1"></i>Supply Chain
+                        </span>
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-lightbulb mr-1"></i>Innovation
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Subsidiary 4 -->
+                <div class="stat-card glass-strong p-6 rounded-2xl border border-teal-500/30 card-3d">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="hexagon flex items-center justify-center">
+                            <i class="fas fa-shipping-fast text-3xl text-white absolute"></i>
+                        </div>
+                        <div class="flex-1 pt-8">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-black font-orbitron">04</div>
+                                <h4 class="text-lg font-bold text-white uppercase leading-tight">Aremix Temmy Global Logistics Concept's</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4 pl-4 border-l-2 border-teal-500/30">
+                        Specialized freight handling, tax management, and protocol services.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-boxes mr-1"></i>Freight
+                        </span>
+                        <span class="bg-teal-500/20 border border-teal-500/40 text-teal-300 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-crown mr-1"></i>Protocol
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Central Connection Point -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-strong rounded-full p-4 border-2 border-teal-500 neon-glow" style="z-index: 2;">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center">
+                    <i class="fas fa-project-diagram text-2xl text-white"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Services Section -->
+        <div class="glass-strong rounded-3xl p-8 border border-teal-500/30">
+            <h3 class="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3 font-orbitron">
+                <i class="fas fa-concierge-bell text-teal-500"></i> 
+                Core Service Specialties
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="stat-card glass p-6 rounded-2xl text-center border border-teal-500/20">
+                    <div class="w-24 h-24 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center mx-auto mb-4 neon-glow rotate-45">
+                        <i class="fas fa-file-invoice-dollar fa-3x text-white -rotate-45"></i>
+                    </div>
+                    <div class="font-bold text-base uppercase tracking-widest mb-2 font-orbitron">Tax & Fees</div>
+                    <p class="text-xs text-slate-400 mb-3">Comprehensive customs and duty handling</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div class="stat-card glass p-6 rounded-2xl text-center border border-teal-500/20">
+                    <div class="w-24 h-24 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center mx-auto mb-4 neon-glow rotate-45">
+                        <i class="fas fa-passport fa-3x text-white -rotate-45"></i>
+                    </div>
+                    <div class="font-bold text-base uppercase tracking-widest mb-2 font-orbitron">Protocol</div>
+                    <p class="text-xs text-slate-400 mb-3">Premium diplomatic & corporate facilitation</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 98%;"></div>
+                    </div>
+                </div>
+
+                <div class="stat-card glass p-6 rounded-2xl text-center border border-teal-500/20">
+                    <div class="w-24 h-24 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center mx-auto mb-4 neon-glow rotate-45">
+                        <i class="fas fa-ship fa-3x text-white -rotate-45"></i>
+                    </div>
+                    <div class="font-bold text-base uppercase tracking-widest mb-2 font-orbitron">Logistics</div>
+                    <p class="text-xs text-slate-400 mb-3">Sea, air, and land freight solutions</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: CONTACT WITH WORLD MAP & DATA -->
+    <div class="a4-container gradient-bg rounded-3xl overflow-hidden relative shadow-2xl p-12 border-2 border-teal-500/40">
+        
+        <!-- Animated Background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+            <svg width="100%" height="100%">
+                <defs>
+                    <radialGradient id="world-gradient">
+                        <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:0" />
+                    </radialGradient>
+                </defs>
+                <circle cx="20%" cy="30%" r="100" fill="url(#world-gradient)">
+                    <animate attributeName="r" from="100" to="120" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="80%" cy="70%" r="80" fill="url(#world-gradient)">
+                    <animate attributeName="r" from="80" to="100" dur="4s" repeatCount="indefinite" />
+                </circle>
+            </svg>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-10 relative z-10">
+            <h2 class="text-5xl font-black mb-4 uppercase font-orbitron">Get In Touch</h2>
+            <div class="h-1 w-48 bg-gradient-to-r from-transparent via-teal-400 to-transparent mx-auto mb-6"></div>
+            <div class="flex items-center justify-center gap-6 text-teal-200 flex-wrap">
+                <span class="flex items-center gap-2 glass-strong px-4 py-2 rounded-full">
+                    <i class="fas fa-globe text-teal-400"></i>
+                    <span class="font-semibold">Global reach</span>
+                </span>
+                <span class="flex items-center gap-2 glass-strong px-4 py-2 rounded-full">
+                    <i class="fas fa-crosshairs text-teal-400"></i>
+                    <span class="font-semibold">Local precision</span>
+                </span>
+                <span class="flex items-center gap-2 glass-strong px-4 py-2 rounded-full">
+                    <i class="fas fa-shield-alt text-teal-400"></i>
+                    <span class="font-semibold">Trusted delivery</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- World Offices Map -->
+        <div class="glass-strong rounded-3xl p-10 mb-10 relative z-10 border-2 border-teal-500/40">
+            <div class="grid grid-cols-3 gap-10">
+                
+                <!-- Nigeria Office -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-32 h-32 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-full flex items-center justify-center mx-auto neon-glow border-4 border-teal-400 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-map-marker-alt text-5xl text-white drop-shadow-lg"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h5 class="font-black text-white uppercase tracking-wider mb-4 text-xl font-orbitron">Nigeria HQ</h5>
+                    <div class="space-y-3">
+                        <div class="glass p-3 rounded-xl flex items-center justify-center gap-3">
+                            <i class="fas fa-phone text-teal-400"></i>
+                            <span class="text-slate-200 font-semibold">+234 810 857 2941</span>
+                        </div>
+                        <div class="glass p-3 rounded-xl flex items-center justify-center gap-3">
+                            <i class="fas fa-phone text-teal-400"></i>
+                            <span class="text-slate-200 font-semibold">+234 816 762 9397</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-teal-300 uppercase tracking-wider">Headquarters</div>
+                </div>
+
+                <!-- USA Office -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-32 h-32 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-full flex items-center justify-center mx-auto neon-glow border-4 border-teal-400 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-flag-usa text-5xl text-white drop-shadow-lg"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h5 class="font-black text-white uppercase tracking-wider mb-4 text-xl font-orbitron">United States</h5>
+                    <div class="space-y-3">
+                        <div class="glass p-3 rounded-xl flex items-center justify-center gap-3">
+                            <i class="fas fa-phone text-teal-400"></i>
+                            <span class="text-slate-200 font-semibold">+1 316 264 9700</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-teal-300 uppercase tracking-wider">Regional Office</div>
+                </div>
+
+                <!-- UK Office -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-32 h-32 bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 rounded-full flex items-center justify-center mx-auto neon-glow border-4 border-teal-400 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-flag text-5xl text-white drop-shadow-lg"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h5 class="font-black text-white uppercase tracking-wider mb-4 text-xl font-orbitron">United Kingdom</h5>
+                    <div class="space-y-3">
+                        <div class="glass p-3 rounded-xl flex items-center justify-center gap-3">
+                            <i class="fas fa-phone text-teal-400"></i>
+                            <span class="text-slate-200 font-semibold">+44 7465 796642</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs text-teal-300 uppercase tracking-wider">European Hub</div>
+                </div>
+            </div>
+
+            <!-- Connection Lines Visualization -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: -1;">
+                <line x1="33%" y1="50%" x2="67%" y2="50%" class="network-line" />
+                <line x1="17%" y1="50%" x2="83%" y2="50%" class="network-line" />
+            </svg>
+        </div>
+
+        <!-- Contact Information Bar -->
+        <div class="glass-strong rounded-3xl p-8 mb-10 relative z-10 border border-teal-500/30">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex items-center gap-6 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center shrink-0 neon-glow group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope text-3xl text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-teal-400 uppercase font-semibold tracking-wider mb-1">Email Address</div>
+                        <div class="text-lg font-bold text-white">info@aremotemmygroup.com</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl flex items-center justify-center shrink-0 neon-glow group-hover:scale-110 transition-transform">
+                        <i class="fas fa-globe text-3xl text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-teal-400 uppercase font-semibold tracking-wider mb-1">Website</div>
+                        <div class="text-lg font-bold text-white">www.aremotemmygroup.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Statistics -->
+        <div class="grid grid-cols-4 gap-6 mb-10 relative z-10">
+            <div class="stat-card glass-strong rounded-2xl p-6 text-center border border-teal-500/30">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-calendar-alt text-2xl text-white"></i>
+                </div>
+                <div class="text-4xl font-black text-teal-400 mb-1 font-orbitron">15+</div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Years Excellence</div>
+            </div>
+            <div class="stat-card glass-strong rounded-2xl p-6 text-center border border-teal-500/30">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-users text-2xl text-white"></i>
+                </div>
+                <div class="text-4xl font-black text-teal-400 mb-1 font-orbitron">1000+</div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Clients Served</div>
+            </div>
+            <div class="stat-card glass-strong rounded-2xl p-6 text-center border border-teal-500/30">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-globe-africa text-2xl text-white"></i>
+                </div>
+                <div class="text-4xl font-black text-teal-400 mb-1 font-orbitron">50+</div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Countries</div>
+            </div>
+            <div class="stat-card glass-strong rounded-2xl p-6 text-center border border-teal-500/30">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-clock text-2xl text-white"></i>
+                </div>
+                <div class="text-4xl font-black text-teal-400 mb-1 font-orbitron">24/7</div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Support</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="relative z-10">
+            <div class="h-px w-full bg-gradient-to-r from-transparent via-teal-500 to-transparent mb-6"></div>
+            <div class="text-center">
+                <div class="text-sm text-teal-400 mb-2 font-orbitron font-bold tracking-wider">AREMO TEMMY GROUP</div>
+                <div class="text-[10px] text-teal-500/50 uppercase tracking-widest">
+                    © 2026 AREMO TEMMY GROUP OF COMPANY NIG LTD. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
